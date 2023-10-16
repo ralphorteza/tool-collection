@@ -1,6 +1,7 @@
 "use client"
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
+import Link from "next/link"
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -59,7 +60,11 @@ export const columns: ColumnDef<Tools>[] = [
               Copy Tool ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View/Edit Tool</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={`/tool/${tool._id}`}>
+              View/Edit Tool
+              </Link>
+            </DropdownMenuItem>
             <DropdownMenuItem>Delete Tool</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
