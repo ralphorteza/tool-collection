@@ -1,7 +1,8 @@
 "use client"
 
+// TODO: client form validation.
 import EditTool from "@/lib/edit-tool"
-import { useRouter } from "next/navigation"
+import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -9,12 +10,19 @@ import { Input } from "@/components/ui/input"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/components/ui/form"
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
 
 enum TypeEnum {
   power_tool = "power-tool",
@@ -47,7 +55,6 @@ export default function ToolForm({
   tool: Inputs,
   id: string,
 }) {
-  const router = useRouter
   const prefill = tool
 
   const form= useForm<Inputs>({
@@ -89,9 +96,18 @@ export default function ToolForm({
           render={({ field }) => (
             <FormItem>
               <FormLabel>Type</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <SelectTrigger>
+                  <SelectValue placeholder="Select a tool type" />
+                </SelectTrigger>
               </FormControl>
+              <SelectContent>
+                <SelectItem value="power-tool">power-tool</SelectItem>
+                <SelectItem value="hand-tool">hand-tool</SelectItem>
+                <SelectItem value="electronics">electronics</SelectItem>
+              </SelectContent>
+              </Select>
             </FormItem>
           )}
         />
@@ -135,15 +151,29 @@ export default function ToolForm({
           control={form.control}
           name="status"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Status</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-            </FormItem>
+          <FormItem>
+            <FormLabel>Status</FormLabel>
+            <Select onValueChange={field.onChange} defaultValue={field.value}>
+            <FormControl>
+              <SelectTrigger>
+                <SelectValue placeholder="Select a tool type" />
+              </SelectTrigger>
+            </FormControl>
+            <SelectContent>
+              <SelectItem value="available">available</SelectItem>
+              <SelectItem value="in-use">in-use</SelectItem>
+              <SelectItem value="maintenance">maintenance</SelectItem>
+              <SelectItem value="missing">missing</SelectItem>
+              <SelectItem value="broken">broken</SelectItem>
+            </SelectContent>
+            </Select>
+          </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <div className="flex justify-between">
+          <Button variant="outline"><Link href="..">Cancel</Link></Button>
+          <Button type="submit">Submit</Button>
+        </div>
       </form>
     </Form>
   )

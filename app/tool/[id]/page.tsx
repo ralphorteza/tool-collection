@@ -35,7 +35,14 @@ export default async function Page(
 
   return (
     <div className="container mx-auto py-10">
-      <ToolForm tool={tool} id={params.id}/>
+      <Card>
+        <CardHeader>
+          <CardTitle>View/Edit Tool</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ToolForm tool={tool} id={params.id}/>
+        </CardContent>
+      </Card>
     </div>
   )
 }

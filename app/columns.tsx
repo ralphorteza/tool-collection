@@ -54,17 +54,12 @@ export const columns: ColumnDef<Tools>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(tool._id)}
-            >
-              Copy Tool ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
             <DropdownMenuItem>
               <Link href={`/tool/${tool._id}`}>
               View/Edit Tool
               </Link>
             </DropdownMenuItem>
+            <DropdownMenuSeparator />
             <DropdownMenuItem>Delete Tool</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

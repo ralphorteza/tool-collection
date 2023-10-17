@@ -1,4 +1,4 @@
-"use server"
+"use server";
 import Tool from "@/models/Tool";
 import connectDB from "./connect-db";
 import { revalidatePath } from "next/cache";
