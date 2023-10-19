@@ -48,7 +48,6 @@ type Inputs = {
   status: StatusEnum,
 };
 
-// TODO: FIX THIS.
 export default function ToolForm() {
   const prefill = {
     name: "",

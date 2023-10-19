@@ -11,6 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import DeleteTool from "@/lib/delete-tool";
 
 
 export type Tools = {
@@ -43,7 +44,8 @@ export const columns: ColumnDef<Tools>[] = [
     enableHiding: false,
     cell: ({ row }) => {
       const tool = row.original
- 
+      const handleDelete = (id: string) => DeleteTool(id);
+      
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -60,7 +62,9 @@ export const columns: ColumnDef<Tools>[] = [
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Delete Tool</DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => handleDelete(tool._id)}>
+              Delete
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
