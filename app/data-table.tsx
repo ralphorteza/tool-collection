@@ -2,7 +2,7 @@
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
+import Link from "next/link";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -55,13 +55,18 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex items-center py-4">
+      <div className="flex items-center justify-between py-4">
         <Input
           placeholder="Filter tools..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) => table.getColumn("name")?.setFilterValue(event.target.value)}
           className="max-w-sm"
         />
+        <Button
+          className="ml-2"
+        >
+          <Link href={"tool/new"}>Add</Link>
+        </Button>
       </div>
       <div className="rounded-md border">
           <Table>
